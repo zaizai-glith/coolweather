@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name="org.litepal.LitePalApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/cloud"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/cloud"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CoolWeather"
+        android:usesCleartextTraffic="true"
+        tools:ignore="MissingClass"
+        tools:targetApi="31">
+        <service
+            android:name=".service.AutoUpdateService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <activity
+            android:name=".WeatherActivity"
+            android:exported="false" />
+        <!--
+        从Android 6.0开始引入了对Https的推荐支持，与以往不同，Android P的系统上面默认所有Http的请求都被阻止了。
+            需要在在AnroidManifest.xml 中的 application 设置属性 android:usesCleartextTraffic="true"
+        -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
